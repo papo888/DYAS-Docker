@@ -176,10 +176,10 @@ Resultado:
 * Redis conectado correctamente
 * Contador funcionando
 
-![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/4.png)
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/4.jpg)
 ---
 
-## 7️⃣ Ejercicio final: usar una imagen de un compañero
+## Ejercicio final: usar una imagen de un compañero
 
 Ejemplo:
 
