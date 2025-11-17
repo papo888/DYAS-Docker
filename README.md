@@ -189,10 +189,10 @@ web:
 ```
 
 Compose actualizado y funcionando.
-
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/5.png)
 ---
 
-# ✔️ **Resumen Final**
+# **Resumen Final**
 
 * Se creó una imagen base simple (busybox)
 * Se dockerizó una app Flask
