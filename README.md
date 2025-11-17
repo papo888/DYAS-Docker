@@ -39,7 +39,7 @@ Resultado:
 ![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/1.png)
 ---
 
-## 2️⃣ Creación de la aplicación Flask + Redis
+## Creación de la aplicación Flask + Redis
 
 Se creó un nuevo build context:
 
@@ -81,7 +81,7 @@ docker build -t friendlyhello .
 
 ---
 
-## 3️⃣ Prueba del contenedor sin Redis
+## Prueba del contenedor sin Redis
 
 ```bash
 docker run --rm -p 4000:80 friendlyhello
@@ -93,9 +93,10 @@ Resultado esperado:
 * Hostname del contenedor visible
 * “cannot connect to Redis” (correcto en esta etapa)
 
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/2.png)
 ---
 
-## 4️⃣ Creación de la aplicación completa con Docker Compose
+## Creación de la aplicación completa con Docker Compose
 
 ### `docker-compose.yaml` inicial:
 
@@ -120,9 +121,10 @@ Resultado:
 * Servicios `web` y `redis` funcionando
 * Contador `Visits` incrementando correctamente
 
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/3.png)
 ---
 
-## 5️⃣ Subida de la imagen personalizada a Docker Hub
+## Subida de la imagen personalizada a Docker Hub
 
 Se inició sesión:
 
@@ -146,7 +148,7 @@ Imagen publicada correctamente en Docker Hub.
 
 ---
 
-## 6️⃣ Uso de MI imagen en el docker-compose
+## Uso de MI imagen en el docker-compose
 
 Se modificó el archivo para usar la imagen del registro:
 
@@ -174,6 +176,7 @@ Resultado:
 * Redis conectado correctamente
 * Contador funcionando
 
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/4.png)
 ---
 
 ## 7️⃣ Ejercicio final: usar una imagen de un compañero
