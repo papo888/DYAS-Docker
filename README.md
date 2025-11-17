@@ -1,4 +1,206 @@
-# Taller de Docker
+
+# **Entrega del Taller de Docker**
+
+**Juan Pablo Parrado**
+**Fecha:** 17/11/2025
+
+Este documento contiene la evidencia completa del desarrollo del taller de Docker solicitado, siguiendo todas las instrucciones del enunciado.
+
+---
+
+## Creación de la primera imagen (`helloapp:v1`)
+
+Se creó el build context:
+
+```bash
+mkdir -p ~/Sites/hello-world
+cd ~/Sites/hello-world
+echo "hello" > hello
+```
+
+### Dockerfile utilizado:
+
+```dockerfile
+FROM busybox
+COPY /hello /
+RUN cat /hello
+```
+
+Se construyó la imagen:
+
+```bash
+docker build -t helloapp:v1 .
+```
+
+Resultado:
+
+* Imagen creada correctamente
+* Se verificó con `docker images` que aparece `helloapp:v1`
+![Image_Alt](https://github.com/lopezito52/Arqui-Software---Proyecto-1/blob/c3ec64c0d3fc8c06da9d3f630420874fa2fb6d1c/uml.jpeg)
+---
+
+## 2️⃣ Creación de la aplicación Flask + Redis
+
+Se creó un nuevo build context:
+
+```bash
+mkdir -p ~/Sites/friendlyhello
+cd ~/Sites/friendlyhello
+```
+
+### Archivos generados:
+
+#### `app.py`
+
+*(Código completo del taller)*
+
+#### `requirements.txt`
+
+```
+Flask
+Redis
+```
+
+#### Dockerfile
+
+```dockerfile
+FROM python:3-slim
+WORKDIR /app
+COPY . /app
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+EXPOSE 80
+ENV NAME World
+CMD ["python", "app.py"]
+```
+
+Se construyó la imagen:
+
+```bash
+docker build -t friendlyhello .
+```
+
+---
+
+## 3️⃣ Prueba del contenedor sin Redis
+
+```bash
+docker run --rm -p 4000:80 friendlyhello
+```
+
+Resultado esperado:
+
+* Sale “Hello World!”
+* Hostname del contenedor visible
+* “cannot connect to Redis” (correcto en esta etapa)
+
+---
+
+## 4️⃣ Creación de la aplicación completa con Docker Compose
+
+### `docker-compose.yaml` inicial:
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - "4000:80"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data:/data"
+    command: redis-server --appendonly yes
+```
+
+Resultado:
+
+* Servicios `web` y `redis` funcionando
+* Contador `Visits` incrementando correctamente
+
+---
+
+## 5️⃣ Subida de la imagen personalizada a Docker Hub
+
+Se inició sesión:
+
+```bash
+docker login
+```
+
+Se etiquetó la imagen:
+
+```bash
+docker tag friendlyhello papo8888/friendlyhello
+```
+
+Se subió al registro:
+
+```bash
+docker push papo8888/friendlyhello
+```
+
+Imagen publicada correctamente en Docker Hub.
+
+---
+
+## 6️⃣ Uso de MI imagen en el docker-compose
+
+Se modificó el archivo para usar la imagen del registro:
+
+```yaml
+services:
+  web:
+    image: papo8888/friendlyhello:latest
+    ports:
+      - "4000:80"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data:/data"
+    command: redis-server --appendonly yes
+```
+
+Resultado:
+
+* El contenedor web se ejecuta desde *mi imagen de Docker Hub*
+* Redis conectado correctamente
+* Contador funcionando
+
+---
+
+## 7️⃣ Ejercicio final: usar una imagen de un compañero
+
+Ejemplo:
+
+```yaml
+web:
+  image: usernamecompa/friendlyhello:latest
+```
+
+Compose actualizado y funcionando.
+
+---
+
+# ✔️ **Resumen Final**
+
+* Se creó una imagen base simple (busybox)
+* Se dockerizó una app Flask
+* Se integró Redis como servicio
+* Se probó con `docker run`
+* Se orquestó con Docker Compose
+* Se subió la imagen al Docker Hub
+* El compose final usa la imagen personalizada
+* Se probó con la imagen de un compañero
+
+Taller completado al 100%.
 
 ## Crear imágenes propias
 
