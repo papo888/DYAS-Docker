@@ -36,7 +36,7 @@ Resultado:
 
 * Imagen creada correctamente
 * Se verificó con `docker images` que aparece `helloapp:v1`
-![Image_Alt](https://github.com/lopezito52/Arqui-Software---Proyecto-1/blob/c3ec64c0d3fc8c06da9d3f630420874fa2fb6d1c/uml.jpeg)
+![Image_Alt](https://github.com/papo888/DYAS-Docker/blob/main/1.png)
 ---
 
 ## 2️⃣ Creación de la aplicación Flask + Redis
